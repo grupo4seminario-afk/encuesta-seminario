@@ -10,127 +10,67 @@ const contenedorOpciones = document.getElementById("options-container");
 let respuestasUsuario = {};
 let preguntaActual = 0;
 
-// === TUS 20 PREGUNTAS CON SUS PROPIOS EMOJIS ===
+// === TUS NUEVAS PREGUNTAS CON SUS PROPIOS EMOJIS ===
 const preguntas = [
     {
         id: "p1",
-        pregunta: "1. ¿Consideras que en el colegio se promueve un ambiente de respeto y Cultura de Paz?",
-        opciones: ["Sí, siempre", "A veces", "Casi nunca", "No, para nada"],
-        emoji: "🕊️" // Paloma de la paz
+        pregunta: "1. ¿Qué haces normalmente cuando ves que a un compañero/a lo están molestando?",
+        opciones: ["Intento defenderlo/a", "Le aviso a un maestro/a o adulto", "No hago nada por miedo", "Me da risa o me uno"],
+        emoji: "👀" // Ojos observando la situación
     },
     {
         id: "p2",
-        pregunta: "2. ¿Has presenciado o recibido alguna charla sobre prevención de la violencia escolar este año?",
-        opciones: ["Sí", "No", "No recuerdo"],
-        emoji: "📢" // Megáfono de anuncios/charlas
+        pregunta: "2. ¿Alguna vez has visto que un niño o una niña moleste o se burle de otro compañero en la escuela?",
+        opciones: ["Sí", "No"],
+        emoji: "🏫" // Escuela
     },
     {
         id: "p3",
-        pregunta: "3. ¿Te sientes seguro/a en los entornos comunes del establecimiento (patios, pasillos, baños)?",
-        opciones: ["Totalmente seguro", "Algo seguro", "Inseguro", "Muy insecure"],
-        emoji: "🛡️" // Escudo de seguridad
+        pregunta: "3. ¿Es correcto decirle cosas feas a alguien para que tenga miedo?",
+        opciones: ["Sí", "No"],
+        emoji: "😟" // Carita de preocupación/miedo
     },
     {
         id: "p4",
-        pregunta: "4. ¿Consideras que el acoso escolar (bullying) es un problema frecuente entre los estudiantes?",
-        opciones: ["Sí, mucho", "Moderado", "Poco", "No, no existe"],
-        emoji: "😟" // Carita de preocupación
+        pregunta: "4. ¿Alguna vez alguien te ha dicho palabras que te hicieron sentir mal o triste?",
+        opciones: ["Sí", "No", "Tal vez"],
+        emoji: "💔" // Corazón roto / Sentirse triste
     },
     {
         id: "p5",
-        pregunta: "5. ¿Conoces los canales o a qué autoridad acudir si sufres o eres testigo de un acto de violencia?",
-        opciones: ["Sí, perfectamente", "Tengo una idea", "No, no sé a quién acudir"],
-        emoji: "🔍" // Lupa de buscar ayuda/información
+        pregunta: "5. ¿Tú crees que es correcto hacer sentir mal a un compañero de clase por su forma de vestir o de ser con palabras feas o tratándolo mal? ¿Por qué?",
+        opciones: ["No, todos merecemos respeto", "No, porque hiere sus sentimientos", "Sí, si me cae mal", "Depende de la situación"],
+        emoji: "🗣️" // Personas hablando / Expresar el por qué
     },
     {
         id: "p6",
-        pregunta: "6. ¿Cómo calificas la comunicación entre los profesores y los alumnos ante un conflicto?",
-        opciones: ["Excelente", "Buena", "Regular", "Mala"],
-        emoji: "🗣️" // Dos personas hablando
+        pregunta: "6. ¿Tú piensas que la violencia solo puede ocurrir en la escuela?",
+        opciones: ["Sí", "No", "Tal vez"],
+        emoji: "🏡" // Casa / Diferentes entornos donde ocurre
     },
     {
         id: "p7",
-        pregunta: "7. ¿Crees que las redes sociales influyen en el aumento de malentendidos o violencia en el entorno escolar?",
-        opciones: ["Sí, influyen mucho", "A veces influyen", "No influyen para nada"],
-        emoji: "📱" // Teléfono celular / Redes sociales
+        pregunta: "7. ¿Piensas que está bien tratar diferente a una persona solo por ser niño o niña?",
+        opciones: ["Sí", "No"],
+        emoji: "🤝" // Igualdad / Trato justo
     },
     {
         id: "p8",
-        pregunta: "8. ¿En tu salón de clases se practican valores como la empatía, la tolerancia y el compañerismo?",
-        opciones: ["Siempre", "Frecuentemente", "Raras veces", "Nunca"],
-        emoji: "🤝" // Apretón de manos / Compañerismo
+        pregunta: "8. ¿Has visto mensajes en internet que hagan sentir mal a alguien?",
+        opciones: ["Sí", "No", "Tal vez"],
+        emoji: "📱" // Teléfono / Mensajes en internet
     },
     {
         id: "p9",
-        pregunta: "9. ¿Has visto situaciones de exclusión social (ignorar o apartar a alguien) en tu grado?",
-        opciones: ["Seguido", "Pocas veces", "Nunca lo he visto"],
-        emoji: "💔" // Corazón roto por la exclusión
+        pregunta: "9. ¿Has visto que dejen a un niño fuera de un grupo o chat para hacerlo sentir triste?",
+        opciones: ["Sí", "No", "Tal vez"],
+        emoji: "🤫" // Exclusión / Dejar fuera del grupo
     },
     {
         id: "p10",
-        pregunta: "10. ¿Consideras que las sanciones del colegio ante conductas violentas son justas y formativas?",
-        opciones: ["Sí", "Deberían mejorar", "No son justas", "No conozco las sanciones"],
-        emoji: "⚖️" // Balanza de la justicia/reglamentos
-    },
-    {
-        id: "p11",
-        pregunta: "11. ¿Te han enseñado estrategias para resolver conflictos pacíficamente mediante el diálogo?",
-        opciones: ["Sí, muchas veces", "Una o dos veces", "Nunca"],
-        emoji: "💡" // Idea / Estrategia
-    },
-    {
-        id: "p12",
-        pregunta: "12. ¿Crees que el estrés académico o la presión escolar genera conductas agresivas en los jóvenes?",
-        opciones: ["Totalmente de acuerdo", "En parte", "En desacuerdo"],
-        emoji: "🤯" // Cabeza explotando por estrés académico
-    },
-    {
-        id: "p13",
-        pregunta: "13. ¿Participas activamente en actividades de integración, deportes o talleres organizados por el plantel?",
-        opciones: ["Sí, en la mayoría", "Solo si es obligatorio", "No participo"],
-        emoji: "⚽" // Pelota de fútbol / Actividades de integración
-    },
-    {
-        id: "p14",
-        pregunta: "14. ¿Consideras que la opinión y los sentimientos de los estudiantes son tomados en cuenta por la dirección?",
-        opciones: ["Siempre", "A veces", "Casi nunca"],
-        emoji: "📝" // Nota / Buzón de sugerencias opiniones
-    },
-    {
-        id: "p15",
-        pregunta: "15. ¿Has escuchado insultos, apodos ofensivos o burlas en los pasillos de forma recurrente?",
-        opciones: ["A diario", "Ocasionalmente", "Casi nunca o nunca"],
-        emoji: "🤫" // Silencio / Secretos ofensivos
-    },
-    {
-        id: "p16",
-        pregunta: "16. ¿Crees que las familias de los estudiantes se involucran lo suficiente en fomentar la no violencia?",
-        opciones: ["Sí, se involucran", "Falta apoyo de los padres", "No se involucran nada"],
-        emoji: "🏡" // Casa / Entorno familiar
-    },
-    {
-        id: "p17",
-        pregunta: "17. ¿Te sentirías cómodo/a participando en un comité estudiantil dedicado a la mediación de conflictos?",
-        opciones: ["Sí, me gustaría", "Tal vez", "No me llama la atención"],
-        emoji: "🙋‍♂️" // Persona levantando la mano para participar
-    },
-    {
-        id: "p18",
-        pregunta: "18. ¿Qué tipo de violencia consideras que es la más común u oculta en el colegio?",
-        opciones: ["Verbal (insultos)", "Psicológica (exclusión)", "Física (empujones)", "Cibernética"],
-        emoji: "👀" // Ojos observando lo oculto
-    },
-    {
-        id: "p19",
-        pregunta: "19. ¿Consideras que las campañas visuales (afiches, murales) ayudan a concientizar sobre la Cultura de Paz?",
-        opciones: ["Sí, ayudan bastante", "Tienen poco impacto", "No sirven para nada"],
-        emoji: "🎨" // Paleta de pintor / Murales y afiches visuales
-    },
-    {
-        id: "p20",
-        pregunta: "20. ¿Estás dispuesto/a a comprometerte activamente para mantener un entorno escolar libre de violencia?",
-        opciones: ["Sí, acepto el reto 🕊️", "Lo intentaré", "No me interesa"],
-        emoji: "✨" // Destellos de compromiso final
+        pregunta: "10. ¿Has visto que se burlen de un niño o una niña por los juegos que le gustan?",
+        opciones: ["Sí", "No"],
+        emoji: "🎮" // Control de videojuegos / Juegos favoritos
     }
 ];
 
@@ -152,7 +92,7 @@ function mostrarPregunta() {
 
     const infoPregunta = preguntas[preguntaActual];
     
-    // === EL CAMBIO CLAVE: El avatar toma el emoji de la pregunta actual ===
+    // El avatar toma el emoji asignado a esta pregunta específica
     avatarPersonaje.innerText = infoPregunta.emoji; 
 
     textoPregunta.innerText = infoPregunta.pregunta;
@@ -183,7 +123,7 @@ function mostrarPregunta() {
 function mostrarPantallaFinal() {
     barraProgreso.style.width = "100%";
     
-    // Al terminar con éxito, el personaje se vuelve un trofeo de victoria
+    // Al terminar, el personaje se vuelve un trofeo de victoria
     avatarPersonaje.innerText = "🏆"; 
     
     textoPregunta.innerHTML = `
@@ -193,6 +133,7 @@ function mostrarPantallaFinal() {
     
     contenedorOpciones.innerHTML = ""; 
 
+    // Mantiene tu misma URL de Google Script intacta
     const URL_DE_TU_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbzHVchh8XLeQuqqJcL8Xs-F8D3blYPamuDQrLwGwT6fOWcBx0FHID9rieKbXxwHqtfv7g/exec";
 
     fetch(URL_DE_TU_GOOGLE_SCRIPT, {
